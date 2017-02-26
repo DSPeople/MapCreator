@@ -1,0 +1,84 @@
+body{
+  	margin:0;
+  	padding: 0;
+}
+
+#buttons{
+	box-sizing: border-box;
+	padding-top: 5px;
+	padding-bottom: 5px;
+  	background-color: grey;
+  	position:relative;
+  	height: 100px;
+  	width: auto;
+}
+
+#buttons > button{
+	float:left;
+	display:block;
+	margin:0;
+	padding: 0;
+	height: 100%;
+	width: 20%;
+}
+
+#spriteBar{
+	position: relative;
+	float: left;
+  	background-color: red;
+  	width: 20%;
+  	height: 850px;
+}
+
+#tabs{
+	float:left;
+  	background-color: green;
+  	height: 50px;
+  	width: 80%;
+}
+
+.tab{
+	border:solid 2px green;
+	background-color: yellow;
+	display: block;
+	float:left;
+	height: 50px;
+	width: auto;
+	max-width: 138px;
+}
+
+#mapDiv{
+	box-sizing: border-box;
+	padding: 1%;
+	float: left;
+  	background-color: blue;
+  	width: 80%;
+  	height: 800px;
+}
+
+#createMapWindow{
+	box-sizing: border-box;
+	padding-top: 15px;
+	text-align: center;
+	font-size: 150%;
+	position: relative;
+	left: 25%;
+	top: 25%;
+	width:50%;
+	height: 90%;
+	background-color: white;
+}
+
+#createMapWindow > button{
+	width: 200px;
+	height: 50px;
+}
+
+.map{
+	//background-color: black;
+	overflow:visible;
+}
+
+.map td{
+	background-color: white;
+}
