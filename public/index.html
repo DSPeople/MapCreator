@@ -1,15 +1,27 @@
 <!DOCTYPE html>
 <html lang="en">
   <head>
-    <meta charset="utf-8">
-    <title>Map Creator</title>
+	  <meta charset="utf-8">
+	  <title>Map Creator</title>
   </head>
   <body>
     <!-- Librerias externas -->
-    <script src="https://code.jquery.com/jquery-1.12.4.min.js" integrity="sha256-ZosEbRLbNQzLpnKIkEdrPv7lOy9C27hHQ+Xp8a4MxAQ=" crossorigin="anonymous"></script>
+	<script src="https://code.jquery.com/jquery-1.12.4.min.js" integrity="sha256-ZosEbRLbNQzLpnKIkEdrPv7lOy9C27hHQ+Xp8a4MxAQ=" crossorigin="anonymous"></script>
+	<div id="buttons">
+		<button type="button" name="Create Map" onclick="showCreateMapWindow()">Create Map</button>
+		<button type="button" name="Load Map">Load Map</button>
+		<button type="button" name="Save">Save</button>
+		<button type="button" name="Save as">Save as</button>
+		<button type="button" name="Preview">Preview</button>
+	</div>
+    <div id="spriteBar"></div>
+    <div id="tabs"></div>
+    <div id="mapDiv"></div>
+
+
 
     <!-- JS -->
-    <script src="js/main.js"></script>
+        <script src="js/main.js"></script>
     <link rel="stylesheet" type="text/css" href="css/main.css">
   </body>
 </html>
