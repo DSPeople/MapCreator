@@ -1,6 +1,7 @@
 body{
   	margin:0;
   	padding: 0;
+	font-family: sans-serif;
 }
 
 #buttons{
@@ -46,7 +47,16 @@ body{
 	float:left;
 	height: 50px;
 	width: auto;
-	max-width: 138px;
+	max-width: 200px;
+	overflow: hidden;
+}
+
+.tab:active{
+	background-color: orange;
+}
+
+.tab:hover{
+	-webkit-box-shadow: inset 5px 6px 10px 1px rgba(0,0,0,0.78);
 }
 
 #mapDiv{
@@ -76,13 +86,13 @@ body{
 	height: 50px;
 }
 
-.map{
+.Map{
 	//background-color: black;
 	overflow:visible;
 }
 
 
-.map td{
+.Map td{
 	text-align: center;
 	font-family: sans-serif;
 	width: 60px;

@@ -1,19 +1,20 @@
 
 function showLoadMapWindow(){
-	$("#tabs").append("<div class='tab'>Map001Tab</div>");
+	$("#tabs").append("<div class='tab' onclick='openTab(event)'>Map001Tab</div>");
 	$("#mapDiv").append("<div id='loadMapWindow' height= '200px' width= '400px'>");
 	$("#loadMapWindow").append("<input type='file' id='files' name='files[]' multiple />");
 	$("#loadMapWindow").append("<output id='filelist'></output>");
 	document.getElementById('files').addEventListener("change",handleFileSelect,false);
 }
 
+
 function showCreateMapWindow(){
-	$("#tabs").append("<div class='tab'>Map001Tab</div>");
+	$("#tabs").append("<div class='tab' onclick='openTab(event)'>Map001Tab</div>");
 	$("#mapDiv").append("<div id='createMapWindow' height= '200px' width= '400px'>");
 	$("#createMapWindow").append("</br></br>Name: <input type='text' name='name' value=''>");
-	$("#createMapWindow").append("</br></br>Rows: <input type='text' name='rows' value=''>");
-	$("#createMapWindow").append("</br></br>Columns: <input type='text' name='columns' value=''>");
-	$("#createMapWindow").append("</br></br>Sprite size: (on pixels): <input type='text' name='size' value=''>");
+	$("#createMapWindow").append("</br></br>Rows: <input type='text' name='rows' value='10'>");
+	$("#createMapWindow").append("</br></br>Columns: <input type='text' name='columns' value='20'>");
+	$("#createMapWindow").append("</br></br>Sprite size: (on pixels): <input type='text' name='size' value='60'>");
 	$("#createMapWindow").append("</br></br><button type='button' name='button' onclick='createMap()'>Create</button>");
 }
 
@@ -25,7 +26,7 @@ function createMap(){
 
 	$(".tab:last-child").html(name);
 	$("#createMapWindow").remove();
-	$("#mapDiv").append("<div class='map' id='" + name + "' height= '90%' width= '90%'>");
+	$("#mapDiv").append("<div class='Map' id='" + name + "' height= '90%' width= '90%'>");
 
 	var map = document.getElementById(name);
 	var str = '';
@@ -47,11 +48,11 @@ function createMap(){
 }
 
 
-
 function handleFileSelect(evt) {
     var files = evt.target.files; // FileList object
 	var f = files[0];
-	$(".tab:last-child").html(f.name);
+	var name = f.name.split(".");
+	$(".tab:last-child").html(name[0]);
 	var reader = new FileReader();
 	reader.readAsText(f);
 	reader.addEventListener("load",createMapFromFile,false);
@@ -61,9 +62,11 @@ function createMapFromFile(e){
 	var	output = e.target.result;
 	var mapArray = output.split("\n");
 
-	var name = $(".tabs:last-child").html();
+	var pestañas = document.getElementsByClassName("tab");
+	var name = pestañas[pestañas.length-1].innerHTML;
+
 	$("#loadMapWindow").remove();
-	$("#mapDiv").append("<div class='map' id='" + name + "' height= '90%' width= '90%'>");
+	$("#mapDiv").append("<div class='Map' id='" + name + "' height= '90%' width= '90%'>");
 
 	var map = document.getElementById(name);
 	var str = '';
@@ -79,4 +82,18 @@ function createMapFromFile(e){
 
  	str += "</table>";
  	$("#" + name).append(str);
+}
+
+function openTab(evt){
+	var maps;
+	maps = document.getElementsByClassName("Map");
+	for(var i = 0; i < maps.length; i++){
+		maps[i].style.display = "none";
+	}
+	 var mapName = evt.currentTarget.innerHTML;
+	 document.getElementById(mapName).style.display = "block";
+}
+
+function openLastTab(){
+	$(".tab:last-child").trigger('click');
 }
