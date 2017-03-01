@@ -38,6 +38,8 @@ body{
 }
 
 .tab{
+	-webkit-user-select: none;
+	padding: 5px;
 	border:solid 2px green;
 	background-color: yellow;
 	display: block;
@@ -62,10 +64,10 @@ body{
 	text-align: center;
 	font-size: 150%;
 	position: relative;
-	left: 25%;
-	top: 25%;
-	width:50%;
-	height: 90%;
+	left: 15%;
+	top: 15%;
+	width:	1000px;
+	height: 500px;
 	background-color: white;
 }
 
@@ -79,6 +81,11 @@ body{
 	overflow:visible;
 }
 
+
 .map td{
+	text-align: center;
+	font-family: sans-serif;
+	width: 60px;
+	height: 60px;
 	background-color: white;
 }
