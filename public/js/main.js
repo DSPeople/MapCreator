@@ -49,6 +49,7 @@ function createMap(){
 
 
 function handleFileSelect(evt) {
+    var spriteSize = 60;
     var files = evt.target.files; // FileList object
 	var f = files[0];
 	var name = f.name.split(".");
@@ -59,11 +60,16 @@ function handleFileSelect(evt) {
 }
 
 function createMapFromFile(e){
+    var spriteSize = 60;
 	var	output = e.target.result;
 	var mapArray = output.split("\n");
 
 	var pestañas = document.getElementsByClassName("tab");
 	var name = pestañas[pestañas.length-1].innerHTML;
+
+    if($(window).width() < 1900){
+        spriteSize = 40;
+    }
 
 	$("#loadMapWindow").remove();
 	$("#mapDiv").append("<div class='Map' id='" + name + "' height= '90%' width= '90%'>");
@@ -75,7 +81,7 @@ function createMapFromFile(e){
  	for(var i = 0; i < mapArray.length-1; i++){
  		str += "<tr>";
  		for(var j = 0; j < mapArray[i].length-1; j++){
-			str += "<td>" + mapArray[i][j] + "</td>";
+            str += "<td height='" + spriteSize + "px' width='" + spriteSize + "px'>"+ mapArray[i][j] +"</td>";
 		}
  		str += "</tr>";
 	}
