@@ -1,4 +1,9 @@
 
+var img = new Image();
+img.src = "spritesheets/terrain.png";
+img.width = "1024px";
+img.height = "384px";
+
 function showLoadMapWindow(){
 	$("#tabs").append("<div class='tab' onclick='openTab(event)'>Map001Tab</div>");
 	$("#mapDiv").append("<div id='loadMapWindow' height= '200px' width= '400px'>");
@@ -63,7 +68,6 @@ function createMapFromFile(e){
     var spriteSize = 60;
 	var	output = e.target.result;
 	var mapArray = output.split("\n");
-
 	var pestañas = document.getElementsByClassName("tab");
 	var name = pestañas[pestañas.length-1].innerHTML;
 
@@ -102,4 +106,25 @@ function openTab(evt){
 
 function openLastTab(){
 	$(".tab:last-child").trigger('click');
+}
+
+$(document).click(function(event) {
+    var text = $(event.target).text();
+	console.log(text);
+});
+
+function createSprites(){
+	var spriteSize = 64;
+	var count = 0;
+
+	for (var i = 1; i <= 6; i++) {
+		for(var j = 1; j <= 16; j++){
+			count++;
+			var str = "<canvas id='sprite"+ count + "' width='64' height='64'></canvas>";
+			$("#spriteBar").append(str);
+			var canv = document.getElementById("sprite" + count);
+			var ctx = canv.getContext("2d");
+			ctx.drawImage(img, (j-1)*spriteSize, (i-1)*spriteSize, spriteSize, spriteSize, 0, 0, spriteSize, spriteSize);
+		}
+	}
 }

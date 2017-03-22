@@ -34,9 +34,16 @@ body{
 	position: relative;
     z-index: auto;
 	float: left;
-  	background-color: red;
+  	background-color: black ;
   	width: 20%;
   	height: 90%;
+	overflow: scroll;
+
+}
+
+#spriteBar > canvas{
+	margin: 4px;
+	background-color: none;
 }
 
 #tabs{
@@ -84,7 +91,7 @@ body{
 	position: relative;
 	left: 15%;
 	top: 15%;
-	width:	80%;
+	width: 80%;
 	height: 75%;
 	background-color: white;
 }
@@ -105,4 +112,8 @@ body{
 	text-align: center;
 	font-family: sans-serif;
 	background-color: white;
+}
+
+canvas{
+	z-index: 10;
 }
