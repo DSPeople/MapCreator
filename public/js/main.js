@@ -6,6 +6,11 @@ img.src = "spritesheets/terrain.png"
 img.width = "1024px";
 img.height = "384px";
 
+var img = new Image();
+img.src = "spritesheets/terrain.png";
+img.width = "1024px";
+img.height = "384px";
+
 function showLoadMapWindow(){
 	$("#tabs").append("<div class='tab' onclick='openTab(event)'>Map001Tab</div>");
 	$("#mapDiv").append("<div id='loadMapWindow' height= '200px' width= '400px'>");
