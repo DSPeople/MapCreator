@@ -1,0 +1,44 @@
+{
+	"floor": {
+	  	"0x0": {
+	    "sprite": "1",
+	    "x": 0,
+		"y": 0,
+		"height": 0
+	 	}
+	},
+
+	"walls": {
+		"0x0": {
+		"sprite": "1",
+		"x": 0,
+		"y": 0,
+		"height": 0,
+		"collission": 1,
+		"destroyable": 1
+		}
+	},
+
+	"items": {
+		"0x0": {
+		"sprite": "1",
+		"x": 0,
+		"y": 0,
+		"height": 0,
+		"collission": 1,
+		"destroyable": 1,
+		"pickable": 1
+		}
+	},
+
+	"npcs": {
+		"0x0": {
+		"sprite": "1",
+		"x": 0,
+		"y": 0,
+		"height": 0,
+		"collission": 1,
+		"destroyable": 1
+		}
+	}
+}

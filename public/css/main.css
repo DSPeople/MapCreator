@@ -1,0 +1,119 @@
+html{
+    width: 100%;
+    height: 100%;
+}
+
+body{
+  	margin:0;
+  	padding: 0;
+	font-family: sans-serif;
+    width: 100%;
+    height: 100%;
+}
+
+#buttons{
+	box-sizing: border-box;
+	padding-top: 5px;
+	padding-bottom: 5px;
+  	background-color: grey;
+  	position:relative;
+  	height: 10%;
+  	width: auto;
+}
+
+#buttons > button{
+	float:left;
+	display:block;
+	margin:0;
+	padding: 0;
+	height: 100%;
+	width: 20%;
+}
+
+#spriteBar{
+	position: relative;
+    z-index: auto;
+	float: left;
+  	background-color: black ;
+  	width: 20%;
+  	height: 90%;
+	overflow: scroll;
+
+}
+
+#spriteBar > canvas{
+	margin: 4px;
+	background-color: none;
+}
+
+#tabs{
+	float:left;
+  	background-color: green;
+  	height: 10%;
+  	width: 80%;
+}
+
+.tab{
+	-webkit-user-select: none;
+	padding: 5px;
+	border:solid 2px green;
+	background-color: yellow;
+	display: block;
+	float:left;
+	height: 50px;
+	width: auto;
+	max-width: 200px;
+	overflow: hidden;
+}
+
+.tab:active{
+	background-color: orange;
+}
+
+.tab:hover{
+	-webkit-box-shadow: inset 5px 6px 10px 1px rgba(0,0,0,0.78);
+}
+
+#mapDiv{
+	box-sizing: border-box;
+	padding: 1%;
+	float: left;
+  	background-color: blue;
+  	width: 80%;
+  	height: 80%;
+}
+
+#createMapWindow{
+	box-sizing: border-box;
+	padding-top: 15px;
+	text-align: center;
+	font-size: 150%;
+	position: relative;
+	left: 15%;
+	top: 15%;
+	width: 80%;
+	height: 75%;
+	background-color: white;
+}
+
+#createMapWindow > button{
+	width: 200px;
+	height: 50px;
+}
+
+.Map{
+	//background-color: black;
+	overflow:visible;
+}
+
+
+
+.Map td{
+	text-align: center;
+	font-family: sans-serif;
+	background-color: white;
+}
+
+canvas{
+	z-index: 10;
+}
