@@ -1,3 +1,10 @@
+var selectedSprite = "";
+var mapCount = 1;
+
+var img = new Image();
+img.src = "spritesheets/terrain.png"
+img.width = "1024px";
+img.height = "384px";
 
 function showLoadMapWindow(){
 	$("#tabs").append("<div class='tab' onclick='openTab(event)'>Map001Tab</div>");
@@ -11,10 +18,10 @@ function showLoadMapWindow(){
 function showCreateMapWindow(){
 	$("#tabs").append("<div class='tab' onclick='openTab(event)'>Map001Tab</div>");
 	$("#mapDiv").append("<div id='createMapWindow' height= '200px' width= '400px'>");
-	$("#createMapWindow").append("</br></br>Name: <input type='text' name='name' value=''>");
+	$("#createMapWindow").append("</br></br>Name: <input type='text' name='name' value='map" + mapCount + "'>");
 	$("#createMapWindow").append("</br></br>Rows: <input type='text' name='rows' value='10'>");
 	$("#createMapWindow").append("</br></br>Columns: <input type='text' name='columns' value='20'>");
-	$("#createMapWindow").append("</br></br>Sprite size: (on pixels): <input type='text' name='size' value='60'>");
+	$("#createMapWindow").append("</br></br>Sprite size: (on pixels): <input type='text' name='size' value='64'>");
 	$("#createMapWindow").append("</br></br><button type='button' name='button' onclick='createMap()'>Create</button>");
 }
 
@@ -30,21 +37,30 @@ function createMap(){
 
 	var map = document.getElementById(name);
 	var str = '';
+	var count = 0;
 
-	str += "<table>";
-	for(var i = 0; i < rows; i++){
-		str += "<tr>";
-		for(var j = 0; j < columns; j++){
-				str += "<td height='";
-				str += spriteSize;
-				str += "px' width='"
-				str += spriteSize;
-				str += "px'></td>";
-		}
-		str += "</tr>";
+
+	for(var i = 0; i < rows*columns; i++){
+		count++;
+		str += "<div class='cell' id='cell"+ count +"height='";
+		str += spriteSize;
+		str += "px' width='"
+		str += spriteSize;
+		str += "px'></div>";
 	}
-	str += "</table>";
+
 	$("#" + name).append(str);
+
+    $(".cell").click(function(event){
+        var mycanv = $("#"+ selectedSprite)[0];
+		var cell = event.target;
+        var img = new Image();
+        img.setAttribute('crossOrigin', 'anonymous');
+        var url = mycanv.toDataURL()
+        img.src = url;
+		//cell.style.backgroundImage = "url('"+img+"');";
+		cell.append(img);
+    })
 }
 
 
@@ -63,7 +79,6 @@ function createMapFromFile(e){
     var spriteSize = 60;
 	var	output = e.target.result;
 	var mapArray = output.split("\n");
-
 	var pestañas = document.getElementsByClassName("tab");
 	var name = pestañas[pestañas.length-1].innerHTML;
 
@@ -102,4 +117,26 @@ function openTab(evt){
 
 function openLastTab(){
 	$(".tab:last-child").trigger('click');
+}
+
+
+
+function createSprites(){
+	var spriteSize = 64;
+	var count = 0;
+
+	for (var i = 1; i <= 6; i++) {
+		for(var j = 1; j <= 16; j++){
+			count++;
+			var str = "<canvas id='sprite"+ count + "' width='64' height='64'></canvas>";
+			$("#spriteBar").append(str);
+			var canv = document.getElementById("sprite" + count);
+			var ctx = canv.getContext("2d");
+			ctx.drawImage(img, (j-1)*spriteSize, (i-1)*spriteSize, spriteSize, spriteSize, 0, 0, spriteSize, spriteSize);
+		}
+	}
+
+    $("#spriteBar > canvas").click(function(event){
+        selectedSprite = event.target.id;
+    });
 }

@@ -34,9 +34,16 @@ body{
 	position: relative;
     z-index: auto;
 	float: left;
-  	background-color: red;
+  	background-color: grey ;
   	width: 20%;
   	height: 90%;
+	overflow: scroll;
+
+}
+
+#spriteBar > canvas{
+	margin: 4px;
+	background-color: black;
 }
 
 #tabs{
@@ -84,7 +91,7 @@ body{
 	position: relative;
 	left: 15%;
 	top: 15%;
-	width:	80%;
+	width: 80%;
 	height: 75%;
 	background-color: white;
 }
@@ -97,12 +104,28 @@ body{
 .Map{
 	//background-color: black;
 	overflow:visible;
+	max-width: 1380px;
 }
 
 
+.Map div > img{
+	margin: 0;
+	display: run-in;
+}
 
-.Map td{
-	text-align: center;
+
+.Map div{
+	border:2px solid black;
+	padding:0;
 	font-family: sans-serif;
 	background-color: white;
+	width: 64px;
+	height: 64px;
+	display:inline-block;
+	float:left;
+
+}
+
+canvas{
+	z-index: 10;
 }
