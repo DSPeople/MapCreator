@@ -1,5 +1,6 @@
 var selectedSprite = "";
 var mapCount = 1;
+var spriteSize = 0;
 
 var img = new Image();
 img.src = "spritesheets/terrain.png"
@@ -34,7 +35,9 @@ function createMap(){
 	var name = $('input[name="name"]').val();
 	var rows = $('input[name="rows"]').val();
 	var columns = $('input[name="columns"]').val();
-	var spriteSize = $('input[name="size"]').val();
+	spriteSize = $('input[name="size"]').val();
+
+
 
 	$(".tab:last-child").html(name);
 	$("#createMapWindow").remove();
@@ -44,24 +47,24 @@ function createMap(){
 	var str = '';
 	var count = 0;
 
+    $("#" + name).css("max-width",(spriteSize*columns)+(4*columns)); //tamaño div + borde div
 
 	for(var i = 0; i < rows*columns; i++){
 		count++;
-		str += "<div class='cell' id='cell"+ count +"height='";
-		str += spriteSize;
-		str += "px' width='"
-		str += spriteSize;
-		str += "px'></div>";
+		str += "<div class='cell' id='cell"+ count +"'></div>";
+        $("#" + name).append(str);
+        str = "";
 	}
 
-	$("#" + name).append(str);
+    $(".cell").css('height',spriteSize);
+    $(".cell").css('width',spriteSize);
 
     $(".cell").click(function(event){
         var mycanv = $("#"+ selectedSprite)[0];
 		var cell = event.target;
         var img = new Image();
         img.setAttribute('crossOrigin', 'anonymous');
-        var url = mycanv.toDataURL()
+        var url = mycanv.toDataURL();
         img.src = url;
 		//cell.style.backgroundImage = "url('"+img+"');";
 		cell.append(img);
