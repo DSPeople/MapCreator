@@ -78,7 +78,7 @@ function createMap(){
         img.style.zIndex = layers.options[layers.selectedIndex].text;
         img.style.position = "relative";
         var imagesCount = $("#"+event.target.id).children().length;
-        var top = 44 * imagesCount;
+        var top = (parseInt(spriteSize)+4) * imagesCount;
         img.style.top = "-" + top.toString() +"px";
 
         //APPEND DE LA IMAGEN
