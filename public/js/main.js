@@ -65,7 +65,7 @@ function createMap(){
     $(".cell").css('width',spriteSize);
 
     //FUNCION PARA PINTAR
-    $(".cell").click(function(event){
+    $(".cell").click(function (event){
         //OBTENCION DE IMAGEN A METER
         var mycanv = $("#"+ selectedSprite)[0];
 		var cell = event.target;
@@ -76,14 +76,41 @@ function createMap(){
         //POSICIONAMIENTO DE LA IMAGEN
         var layers = document.getElementById("layerSelector_map1");
         img.style.zIndex = layers.options[layers.selectedIndex].text;
-        img.style.position = "relative";
-        var imagesCount = $("#"+event.target.id).children().length;
-        var top = (parseInt(spriteSize)+4) * imagesCount;
-        img.style.top = "-" + top.toString() +"px";
+        var zindex = layers.options[layers.selectedIndex].text;
+        if(($(cell).find("img").css("z-index") == zindex) == false){
+            img.style.position = "relative";
+            var imagesCount = $("#"+event.target.id).children().length;
+            var top = (parseInt(spriteSize)+4) * imagesCount;
+            img.style.top = "-" + top.toString() +"px";
 
-        //APPEND DE LA IMAGEN
-		cell.append(img);
-    })
+            //APPEND DE LA IMAGEN
+    		cell.append(img);
+        }
+        //Funcion para clickar en la imagen
+        $(".cell > img").click(function(event){
+            var mycanv = $("#"+ selectedSprite)[0];
+    		var cell = $(event.target).parent();
+            var img = new Image();
+            img.setAttribute('crossOrigin', 'anonymous');
+            var url = mycanv.toDataURL();
+            img.src = url;
+            //POSICIONAMIENTO DE LA IMAGEN
+            var layers = document.getElementById("layerSelector_map1");
+            img.style.zIndex = layers.options[layers.selectedIndex].text;
+            var zindex = layers.options[layers.selectedIndex].text;
+            if(($(cell).find("img").css("z-index") == zindex) == false){
+                img.style.position = "relative";
+                var imagesCount = cell.children().length;
+                var top = (parseInt(spriteSize)+4) * imagesCount;
+                img.style.top = "-" + top.toString() +"px";
+
+                //APPEND DE LA IMAGEN
+        		cell.append(img);
+            }
+        });
+    });
+
+
 }
 
 
