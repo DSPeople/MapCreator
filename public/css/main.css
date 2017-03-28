@@ -106,15 +106,30 @@ body{
 	overflow:visible;
 	max-width: 1380px;
     height: 90%;
+    margin-top: 3%;
 
 }
 
+.Map > span{
+
+}
+.layerSelector{
+
+}
+
+.layerDiv{
+    border: none;
+    position:relative;
+    top:-470px;
+}
 
 .Map div > img{
     width:100%;
     height: 100%;
 	margin: 0;
-	display: run-in;
+    position: relative;
+    top:0;
+    left:0;
 }
 
 

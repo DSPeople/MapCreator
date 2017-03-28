@@ -38,7 +38,7 @@ function createMap(){
 	spriteSize = $('input[name="size"]').val();
 
 
-
+    //OBTENCION DE VALORES DEL FORMULARIO
 	$(".tab:last-child").html(name);
 	$("#createMapWindow").remove();
 	$("#mapDiv").append("<div class='Map' id='" + name + "' height= '90%' width= '90%'>");
@@ -47,8 +47,9 @@ function createMap(){
 	var str = '';
 	var count = 0;
 
+    //ANCHURA MAXIMA DEL MAPA
     $("#" + name).css("max-width",(spriteSize*columns)+(4*columns)); //tamaño div + borde div
-
+    //CREACION DEL GRID
 	for(var i = 0; i < rows*columns; i++){
 		count++;
 		str += "<div class='cell' id='cell"+ count +"'></div>";
@@ -56,19 +57,60 @@ function createMap(){
         str = "";
 	}
 
+    //CREACION DE LA LISTA DE CAPAS
+    str = "<div class='layerDiv'><span>Layer Selector:&nbsp</span><select class='layerSelector' id='layerSelector_" + name + "'><option value='0'>0</option><option value='1'>1</option><option value='2'>2</option><option value='3'>3</option></div>"
+    $("#" + name).append(str);
+
     $(".cell").css('height',spriteSize);
     $(".cell").css('width',spriteSize);
 
-    $(".cell").click(function(event){
+    //FUNCION PARA PINTAR
+    $(".cell").click(function (event){
+        //OBTENCION DE IMAGEN A METER
         var mycanv = $("#"+ selectedSprite)[0];
 		var cell = event.target;
         var img = new Image();
         img.setAttribute('crossOrigin', 'anonymous');
         var url = mycanv.toDataURL();
         img.src = url;
-		//cell.style.backgroundImage = "url('"+img+"');";
-		cell.append(img);
-    })
+        //POSICIONAMIENTO DE LA IMAGEN
+        var layers = document.getElementById("layerSelector_map1");
+        img.style.zIndex = layers.options[layers.selectedIndex].text;
+        var zindex = layers.options[layers.selectedIndex].text;
+        if(($(cell).find("img").css("z-index") == zindex) == false){
+            img.style.position = "relative";
+            var imagesCount = $("#"+event.target.id).children().length;
+            var top = (parseInt(spriteSize)+4) * imagesCount;
+            img.style.top = "-" + top.toString() +"px";
+
+            //APPEND DE LA IMAGEN
+    		cell.append(img);
+        }
+        //Funcion para clickar en la imagen
+        $(".cell > img").click(function(event){
+            var mycanv = $("#"+ selectedSprite)[0];
+    		var cell = $(event.target).parent();
+            var img = new Image();
+            img.setAttribute('crossOrigin', 'anonymous');
+            var url = mycanv.toDataURL();
+            img.src = url;
+            //POSICIONAMIENTO DE LA IMAGEN
+            var layers = document.getElementById("layerSelector_map1");
+            img.style.zIndex = layers.options[layers.selectedIndex].text;
+            var zindex = layers.options[layers.selectedIndex].text;
+            if(($(cell).find("img").css("z-index") == zindex) == false){
+                img.style.position = "relative";
+                var imagesCount = cell.children().length;
+                var top = (parseInt(spriteSize)+4) * imagesCount;
+                img.style.top = "-" + top.toString() +"px";
+
+                //APPEND DE LA IMAGEN
+        		cell.append(img);
+            }
+        });
+    });
+
+
 }
 
 
